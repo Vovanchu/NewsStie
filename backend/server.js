@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 
 const API_KEY = process.env.NEWS_API_KEY;
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 const BASE = "https://newsapi.org/v2";
 
 app.get("/api/headlines", async (req, res) => {
