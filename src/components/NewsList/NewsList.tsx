@@ -7,7 +7,10 @@ interface NewsListProps {
   items: NewsArticle[];
 }
 
-const NewsList: React.FC<NewsListProps> = ({ items }) => {
+const NewsList: React.FC<NewsListProps> = ({ items = [] }) => {
+  if (items.length === 0)
+    return <div className={styles.error}>No news found</div>;
+
   return (
     <div className={styles.newsList}>
       {items.map((article, idx) => (
