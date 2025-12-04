@@ -1,14 +1,32 @@
+import "dotenv/config";
+
+const BASE_URL = import.meta.env.PROD
+  ? "https://news-backend-2pdm.onrender.com"
+  : import.meta.env.VITE_API_URL;
+
 export const getHeadlines = async () => {
-  const res = await fetch("http://localhost:5001/api/headlines");
-  return res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/api/headlines`);
+    return await res.json();
+  } catch (err) {
+    console.error("Error fetching headlines:", err);
+  }
 };
 
 export const getByCategory = async (category: string) => {
-  const res = await fetch(`http://localhost:5001/api/category/${category}`);
-  return res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/api/category/${category}`);
+    return await res.json();
+  } catch (err) {
+    console.error(`Error fetching category ${category}:`, err);
+  }
 };
 
 export const searchNews = async (query: string) => {
-  const res = await fetch(`http://localhost:5001/api/search/${query}`);
-  return res.json();
+  try {
+    const res = await fetch(`${BASE_URL}/api/search/${query}`);
+    return await res.json();
+  } catch (err) {
+    console.error(`Error searching news for "${query}":`, err);
+  }
 };
