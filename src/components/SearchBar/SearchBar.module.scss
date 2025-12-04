@@ -1,0 +1,93 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+
+  @include mixins.tablet {
+    max-width: 100%;
+    gap: 0.4rem;
+  }
+
+  @include mixins.mobile {
+    gap: 0.3rem;
+    max-width: 100%;
+  }
+
+  .input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: vars.$font-family;
+    color: vars.$color-text;
+    background-color: white;
+    border: 2px solid vars.$color-bg;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: vars.$color-accent;
+      box-shadow: 0 0 0 3px rgba(vars.$color-accent, 0.1);
+    }
+
+    &::placeholder {
+      color: vars.$color-text;
+    }
+
+    @include mixins.tablet {
+      padding: 0.65rem 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    @include mixins.mobile {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      border-width: 1px;
+    }
+  }
+
+  .button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: vars.$font-family;
+    color: white;
+    background-color: vars.$color-accent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: vars.$color-accent;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(vars.$color-accent, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    @include mixins.tablet {
+      padding: 0.65rem 1.1rem;
+      font-size: 0.9rem;
+    }
+
+    @include mixins.mobile {
+      padding: 0.5rem 0.85rem;
+      font-size: 0.8rem;
+      border-radius: 6px;
+
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+  }
+}

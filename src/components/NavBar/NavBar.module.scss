@@ -1,0 +1,84 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.navBar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+
+  @include mixins.tablet {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include mixins.mobile {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    width: 150px;
+    height: auto;
+    padding: 0 20px;
+
+    @include mixins.tablet {
+      width: 100px;
+    }
+
+    @include mixins.mobile {
+      width: 100px;
+    }
+  }
+
+  &__links {
+    padding: 20px 20px;
+    display: flex;
+    gap: 16px;
+
+    @include mixins.tablet {
+      padding: 12px 0;
+    }
+
+    @include mixins.mobile {
+      padding: 12px 0;
+    }
+
+    &_link {
+      text-decoration: none;
+      color: vars.$color-text;
+      font-weight: 500;
+      font-size: 16px;
+      font-family: vars.$font-family;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &_active {
+        text-decoration: underline;
+      }
+
+      @include mixins.tablet {
+        font-size: 14px;
+      }
+
+      @include mixins.mobile {
+        font-size: 12px;
+      }
+
+      &:hover {
+        color: vars.$color-hover;
+      }
+    }
+  }
+}

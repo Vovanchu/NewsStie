@@ -1,0 +1,95 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.footer {
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 2rem 0;
+  font-family: sans-serif;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.brand {
+  margin-bottom: 1rem;
+  text-align: center;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  @include mixins.tablet {
+    text-align: left;
+    margin-bottom: 0;
+  }
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  a {
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #3b82f6;
+    }
+  }
+
+  .facebook:hover {
+    color: #3b5998;
+  }
+
+  .twitter:hover {
+    color: #1da1f2;
+  }
+
+  .instagram:hover {
+    color: #e1306c;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.copyright {
+  color: #9ca3af;
+  text-align: center;
+  font-size: 0.875rem;
+
+  a {
+    text-decoration: underline;
+    color: #9ca3af;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  @include mixins.tablet {
+    text-align: right;
+  }
+}

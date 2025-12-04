@@ -1,0 +1,79 @@
+.card {
+  width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.cardImage {
+  position: relative;
+  height: 180px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.fpo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0.15;
+  transform: translate(-50%, -50%);
+}
+
+.block,
+.block2,
+.block3,
+.circle {
+  background: #e6e6e6;
+  overflow: hidden;
+  position: relative;
+  border-radius: 6px;
+}
+
+.block {
+  height: 100%;
+}
+
+.block2 {
+  height: 20px;
+  width: 70%;
+  margin-bottom: 10px;
+}
+
+.block3 {
+  height: 14px;
+  width: 90%;
+  margin-bottom: 14px;
+}
+
+.circle {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.pulsate {
+  animation: shimmer 1.4s infinite linear;
+  background: linear-gradient(90deg, #e6e6e6 0%, #f5f5f5 50%, #e6e6e6 100%);
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
