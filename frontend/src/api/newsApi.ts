@@ -1,5 +1,5 @@
 const BASE_URL = import.meta.env.PROD
-  ? "https://news-backend-2pdm.onrender.com"
+  ? import.meta.env.VITE_SERVER_API_URL
   : import.meta.env.VITE_API_URL;
 
 console.log("BASE_URL:", BASE_URL);
