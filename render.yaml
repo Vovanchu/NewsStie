@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: news-backend
+    env: node
+    plan: free
+    branch: develop
+    rootDir: backend
+    buildCommand: ""
+    startCommand: "npm start"
+    autoDeploy: true
