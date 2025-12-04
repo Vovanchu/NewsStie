@@ -4,7 +4,7 @@ services:
     env: node
     plan: free
     branch: develop
-    rootDir: Backend # вказуємо директорію з файлом server.js Backend
+    rootDir: backend # вказуємо директорію з файлом server.js
     buildCommand: ""
     startCommand: "npm start" # запускаємо server.js
     autoDeploy: true
