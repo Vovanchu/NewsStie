@@ -6,5 +6,5 @@ services:
     branch: develop
     rootDir: backend
     buildCommand: ""
-    startCommand: "npm start"
+    startCommand: "npm start" # запускаємо server.js
     autoDeploy: true
