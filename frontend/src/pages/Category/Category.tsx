@@ -38,7 +38,6 @@ const Category = () => {
     <div className={styles.category}>
       <h1 className={styles.category__title}>{categoryName} News</h1>
 
-      {/* Skeleton grid */}
       {loading && (
         <div className={styles.skeletonGrid}>
           {Array.from({ length: 6 }).map((_, i) => (

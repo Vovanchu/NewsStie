@@ -2,16 +2,14 @@ import "./App.css";
 import { AppRouter } from "./router/AppRouter";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
-import TopArrow from "./assets/TopArrow.svg";
+import ScrollToTop from "./components/ScrollTop/ScrollTop";
 
 function App() {
   return (
     <>
       <NavBar />
       <main>
-        <a href="#" className="top_button">
-          <img src={TopArrow} alt=" Top Arrow" className="top_arrow" />
-        </a>
+        <ScrollToTop />
         <AppRouter />
       </main>
       <Footer />
