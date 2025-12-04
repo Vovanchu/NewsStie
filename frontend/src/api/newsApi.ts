@@ -1,8 +1,8 @@
-import "dotenv/config";
-
 const BASE_URL = import.meta.env.PROD
   ? "https://news-backend-2pdm.onrender.com"
   : import.meta.env.VITE_API_URL;
+
+console.log("BASE_URL:", BASE_URL);
 
 export const getHeadlines = async () => {
   try {
