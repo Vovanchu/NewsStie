@@ -1,18 +1,21 @@
-// src/components/NewsList.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./NewsList.module.scss";
 import type { NewsListProps } from "../../types/newsListProps";
+import { MAX_ARTICLES_PER_PAGE as itemsPerPage } from "../../constants/constants";
+import NewsItem from "../NewsItem/NewsItem";
 
-const NewsList: React.FC<NewsListProps> = ({
-  items = [],
-  itemsPerPage = 6,
-}) => {
+const NewsList: React.FC<NewsListProps> = ({ items = [] }) => {
   const [page, setPage] = useState(1);
 
-  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const totalPages = useMemo(
+    () => Math.ceil(items.length / itemsPerPage),
+    [items]
+  );
 
-  const start = (page - 1) * itemsPerPage;
-  const currentItems = items.slice(start, start + itemsPerPage);
+  const currentItems = useMemo(
+    () => items.slice((page - 1) * itemsPerPage, page * itemsPerPage),
+    [items, page]
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,31 +27,8 @@ const NewsList: React.FC<NewsListProps> = ({
   return (
     <>
       <div className={styles.newsList}>
-        {currentItems.map((article, idx) => (
-          <a
-            key={idx}
-            href={article.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.newsItem}
-          >
-            {article.urlToImage && (
-              <img
-                src={article.urlToImage}
-                alt={article.title}
-                className={styles.newsImage}
-              />
-            )}
-            <div className={styles.newsContent}>
-              <h2 className={styles.newsTitle}>{article.title}</h2>
-              {article.description && (
-                <p className={styles.newsDescription}>{article.description}</p>
-              )}
-              {article.source?.name && (
-                <span className={styles.newsSource}>{article.source.name}</span>
-              )}
-            </div>
-          </a>
+        {currentItems.map((article) => (
+          <NewsItem key={article.url} article={article} />
         ))}
       </div>
 
@@ -78,4 +58,4 @@ const NewsList: React.FC<NewsListProps> = ({
   );
 };
 
-export default NewsList;
+export default React.memo(NewsList);

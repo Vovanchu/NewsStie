@@ -3,16 +3,10 @@ import styles from "./NavBar.module.scss";
 import { routes } from "../../router/routes";
 import Logo from "../../assets/Logo.png";
 import { SearchBar } from "../SearchBar";
+import { navItems } from "../../constants/nav";
+import React from "react";
 
-const navItems = [
-  { path: "/", label: "All News" },
-  { path: "/category/sports", label: "Sports" },
-  { path: "/category/technology", label: "Tech" },
-  { path: "/category/science", label: "Science" },
-  { path: "/category/politics", label: "Politics" },
-];
-
-const NavBar = () => {
+const NavBar: React.FC = () => {
   return (
     <div className={styles.navBar}>
       <div className={styles.navBar__logo}>
@@ -29,7 +23,9 @@ const NavBar = () => {
             key={item.path}
             to={item.path}
             className={({ isActive }) =>
-              `${styles.navBar__links_link} ${isActive ? styles.navBar__links_link_active : ""}`
+              `${styles.navBar__links_link} ${
+                isActive ? styles.navBar__links_link_active : ""
+              }`
             }
           >
             {item.label}
@@ -40,4 +36,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default React.memo(NavBar);

@@ -1,32 +1,21 @@
-const BASE_URL = import.meta.env.PROD
-  ? import.meta.env.VITE_SERVER_API_URL
-  : import.meta.env.VITE_API_URL;
+import type { NewsArticle } from "../types/news";
+import type { Category } from "../types/category";
+import { apiClient } from "./apiClient";
 
-console.log("BASE_URL:", BASE_URL);
+export const newsApi = {
+  getByCategory: (category: Category, signal?: AbortSignal) =>
+    apiClient.request<{ articles: NewsArticle[] }>(
+      `/api/category/${category}`,
+      { signal }
+    ),
 
-export const getHeadlines = async () => {
-  try {
-    const res = await fetch(`${BASE_URL}/api/headlines`);
-    return await res.json();
-  } catch (err) {
-    console.error("Error fetching headlines:", err);
-  }
-};
+  getHeadlines: (signal?: AbortSignal) =>
+    apiClient.request<{ articles: NewsArticle[] }>(`/api/headlines`, {
+      signal,
+    }),
 
-export const getByCategory = async (category: string) => {
-  try {
-    const res = await fetch(`${BASE_URL}/api/category/${category}`);
-    return await res.json();
-  } catch (err) {
-    console.error(`Error fetching category ${category}:`, err);
-  }
-};
-
-export const searchNews = async (query: string) => {
-  try {
-    const res = await fetch(`${BASE_URL}/api/search/${query}`);
-    return await res.json();
-  } catch (err) {
-    console.error(`Error searching news for "${query}":`, err);
-  }
+  search: (query: string, signal?: AbortSignal) =>
+    apiClient.request<{ articles: NewsArticle[] }>(`/api/search/${query}`, {
+      signal,
+    }),
 };

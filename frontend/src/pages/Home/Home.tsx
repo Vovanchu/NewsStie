@@ -1,32 +1,21 @@
-// src/pages/Home.tsx
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./Home.module.scss";
-import { getHeadlines } from "../../api/newsApi";
-import { NewsList } from "../../components/NewsList/index";
-import type { NewsArticle } from "../../types/news";
+import { NewsList } from "../../components/NewsList";
 import { LoadingSpinner } from "../../components/Loading";
 
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "../../store";
+import { fetchHeadlines } from "../../store/slices/newsSlice";
+
 const Home = () => {
-  const [data, setData] = useState<NewsArticle[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const { articles, loading, error } = useSelector(
+    (state: RootState) => state.news
+  );
 
   useEffect(() => {
-    const fetchNews = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await getHeadlines();
-        setData(response.articles);
-      } catch {
-        alert(" Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNews();
-  }, []);
+    dispatch(fetchHeadlines());
+  }, [dispatch]);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <div className={styles.error}>Error: {error}</div>;
@@ -35,7 +24,7 @@ const Home = () => {
     <div className={styles.home}>
       <h1>Latest News</h1>
 
-      <NewsList items={data} />
+      <NewsList items={articles} />
     </div>
   );
 };
