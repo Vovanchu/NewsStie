@@ -1,7 +1,7 @@
-import type { Category } from "./category";
+import type { CategoryKey } from "./category";
 
 export interface NavItem {
   path: string;
   label: string;
-  category?: Category;
+  category?: CategoryKey;
 }

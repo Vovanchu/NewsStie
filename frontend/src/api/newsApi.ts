@@ -1,9 +1,9 @@
 import type { NewsArticle } from "../types/news";
-import type { Category } from "../types/category";
+import type { CategoryKey } from "../types/category";
 import { apiClient } from "./apiClient";
 
 export const newsApi = {
-  getByCategory: (category: Category, signal?: AbortSignal) =>
+  getByCategory: (category: CategoryKey, signal?: AbortSignal) =>
     apiClient.request<{ articles: NewsArticle[] }>(
       `/api/category/${category}`,
       { signal }

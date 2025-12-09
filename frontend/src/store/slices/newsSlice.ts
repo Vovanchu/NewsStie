@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { newsApi } from "../../api/newsApi";
 import type { NewsArticle } from "../../types/news";
-import type { Category } from "../../types/category";
+import type { CategoryKey } from "../../types/category";
 import type { NewsState } from "../../types/newsStates";
 
 const initialState: NewsState = {
@@ -26,7 +26,7 @@ export const fetchHeadlines = createAsyncThunk<
 
 export const fetchArticlesByCategory = createAsyncThunk<
   NewsArticle[],
-  Category,
+  CategoryKey,
   { rejectValue: string }
 >("news/fetchByCategory", async (category, { rejectWithValue }) => {
   try {
